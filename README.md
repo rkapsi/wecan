@@ -13,9 +13,11 @@ Please note that CAN has no bitrate auto-negioation. If you configure your inter
 
 ## Use-Case
 
-I have a CAN-bus BMS that communicates strictly at 500 kbit/s and I have a Wakespeed that runs by default at 250 kbit/s but can be configured to use 500 kbit/s. The traditional way of doing it is to plug the BMS into its own CAN-bus port and enable the `CAN-bus BMS (500 kbit/s)` profile and the Wakspeed and any other VE.Can Device into the other CAN-bus port and enable the `VE.Can & CAN-bus BMS (250 kbit/s)` profile for it. In this configuration the GX Device becomes a CAN-bus Bridge and a critical element in the system that cannot work without it.
+I have a CAN-bus BMS that communicates strictly at 500 kbit/s and I have a Wakespeed that runs by default at 250 kbit/s but can be configured to use 500 kbit/s. The traditional way of doing it is to plug the BMS into its own CAN-bus port and enable the `CAN-bus BMS (500 kbit/s)` profile and the Wakspeed into the other CAN-bus port and enable the `VE.Can & CAN-bus BMS (250 kbit/s)` profile for it. In this configuration the GX Device becomes a CAN-bus Bridge and a critical element in the system that cannot work without it.
 
 My proposal is to configure the Wakespeed to use 500 kbit/s and connect it to the same CAN-bus as the BMS but this will break the GX Device integration because the `CAN-bus BMS (500 kbit/s)` profile will disregard non-BMS messages. The GX Device will ignore the Wakespeed and you can't make use of DVCC for example. The solution is to configure the CAN-bus port to use the `VE.Can & CAN-bus BMS (250 kbit/s)` profile at 500 kbit/s. In this scenario the GX Device can play a role in your electrical system but it's not a critical element.
+
+Ideally Victron Energy should either replace the `CAN-bus BMS (500 kbit/s)` profile with a `VE.Can & CAN-bus BMS (500 kbit/s)` option, or offer it as a new option, or re-work the CAN-bus configuration altogether. Let the user choose which bitrate and protocols they want to run over any given CAN-bus port and offer the profiles as recommended presets.
 
 ## Installation
 
