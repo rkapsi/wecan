@@ -53,10 +53,13 @@ install() {
     fi
 }
 
+# Symlink the rc.local script. 
+#     NOTE: Do this first so that it can 'fix' itself after a
+#       firmware upgrade because symlinking the wecan.sh script
+#       will most likely fail due to timing issues (see README).
+install $WECAN_RC_LOCAL_FILE $SYS_RC_LOCAL_FILE
+
 # Symlink the wecan.sh script
 install $WECAN_SCRIPT_FILE $SYS_CAN_SET_RATE_FILE
-
-# Symlink the rc.local script
-install $WECAN_RC_LOCAL_FILE $SYS_RC_LOCAL_FILE
 
 exit 0
