@@ -25,7 +25,11 @@ uninstall() {
     fi
 }
 
-uninstall $SYS_CAN_SET_RATE_FILE
+# Uninstall the rc.local Symlink first. It's very unlikly to fail
+# and prevents wecan from re-installing itself.
 uninstall $SYS_RC_LOCAL_FILE
+
+# Remove the can-set-rate Symlink
+uninstall $SYS_CAN_SET_RATE_FILE
 
 exit 0
