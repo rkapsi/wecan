@@ -14,7 +14,7 @@ SYS_RC_LOCAL_FILE="${SYS_DATA_DIR}/rc.local"
 SYS_LOCAL_BIN_DIR="/usr/local/bin"
 SYS_CAN_SET_RATE_FILE="${SYS_LOCAL_BIN_DIR}/can-set-rate"
 
-WECAN_DIR="/${SYS_DATA_DIR}/wecan"
+WECAN_DIR="${SYS_DATA_DIR}/wecan"
 WECAN_SCRIPT_FILE="${WECAN_DIR}/wecan.sh"
 WECAN_RC_LOCAL_FILE="${WECAN_DIR}/install.sh"
 
