@@ -11,6 +11,12 @@ WeCan is a very simple script that injects itself into the GX Device's `$PATH` a
 
 Please note that CAN has no bitrate auto-negioation. If you configure your interface for 500 kbit/s and connect a VE.Can device to it then it'll not work. To make it work you'll need a CAN-bus Bridge to translate between 250 kbit/s and 500 kbit/s.
 
+## Use-Case
+
+I have a CAN-bus BMS that communicates strictly at 500 kbit/s and I have a Wakespeed that runs by default at 250 kbit/s but can be configured to use 500 kbit/s. The traditional way of doing it is to plug the BMS into its own CAN-bus port and enable the `CAN-bus BMS (500 kbit/s)` profile and the Wakspeed and any other VE.Can Device into the other CAN-bus port and enable the `VE.Can & CAN-bus BMS (250 kbit/s)` profile for it. In this configuration the GX Device becomes a CAN-bus Bridge and a critical element in the system that cannot work without it.
+
+My proposal is to configure the Wakespeed to use 500 kbit/s and connect it to the same CAN-bus as the BMS but this will break the GX Device integration because the `CAN-bus BMS (500 kbit/s)` profile will disregard non-BMS messages. The GX Device will ignore the Wakespeed and you can't make use of DVCC for example. The solution is to configure the CAN-bus port to use the `VE.Can & CAN-bus BMS (250 kbit/s)` profile at 500 kbit/s. In this scenario the GX Device can play a role in your electrical system but it's not a critical element.
+
 ## Installation
 
 Copy the contents of the `data/wecan` directory to `/data/wecan` on your GX. Make sure the scripts are executable and execute the `install.sh` script. The WeCan script takes immediately effect but you need to either toggle on/off your CAN profile once or restart the GX.
@@ -44,4 +50,4 @@ You can validate the CAN-bus bitrate by invoking a command like:
 
 ## Uninstall / Disable
 
-Execute the `uninstall.sh` script and repeat the installation dance (toggle the CAN-bus profile or restart the GX).
+Execute the `uninstall.sh` script and repeat the installation dance (toggle the CAN-bus profile or restart the GX Device).
