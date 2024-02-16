@@ -1,20 +1,26 @@
 #!/bin/bash
 
 #
-# This is the wecan script that injects in the Cerbo GX's PATH
+# This is the script that injects itself into the GX Device's PATH
 # and intercepts calls for the can-set-rate script.
 #
 
 #
+# Configuration values
+#
 # Cerbo GX:
-#   Mk1:
-#     - vecan0: VE.Can
-#     - vecan1: CAN-bus BMS
+#    Mk1:
+#        - vecan0: VE.Can
+#        - vecan1: CAN-bus BMS
 #
-#   Mk2:
-#     - vecan0: VE.Can 1
-#     - vecan1: VE.Can 2
+#    Mk2:
+#        - vecan0: VE.Can 1
+#        - vecan1: VE.Can 2
 #
+# Ekrano GX:
+#    Same as Cerbo GX Mk2
+#
+ 
 CONFIG_DEVICE="vecan1"
 CONFIG_BITRATE=500000
 

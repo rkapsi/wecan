@@ -34,10 +34,22 @@ install() {
         if [ ! -d $dst_path ]; then
             echo "Creating path: ${dst_path}"
             mkdir -p $dst_path
+
+            # Can happen if the filesystem is still in ro mode!
+            if [ $? -ne 0 ]; then
+                echo "Failed to create path: ${dst_path}"
+                exit 1
+            fi
         fi
 
         echo "Symlink: ${2} -> ${1}"
         ln -s $1 $2
+
+        # Can happen if the filesystem is still in ro mode!
+        if [ $? -ne 0 ]; then
+            echo "Failed to create Symlink: ${2} -> ${1}"
+            exit 1
+        fi
     fi
 }
 

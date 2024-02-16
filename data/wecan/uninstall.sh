@@ -17,6 +17,11 @@ uninstall() {
     if [ -f $1 ] && [ -L $1 ]; then
         echo "Removing Symlink: ${1}"
         rm $1
+
+        if [ $? -ne 0 ]; then
+            echo "Failed to remove Symlink: ${1}"
+            exit 1
+        fi
     fi
 }
 
