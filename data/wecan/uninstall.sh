@@ -7,20 +7,30 @@
 # somebody else's Symlink.
 #
 
-SYS_LOCAL_BIN_DIR="/usr/local/bin"
-SYS_CAN_SET_RATE_FILE="${SYS_LOCAL_BIN_DIR}/can-set-rate"
-
 SYS_DATA_DIR="/data"
 SYS_RC_LOCAL_FILE="${SYS_DATA_DIR}/rc.local"
 
-uninstall() {
-    if [ -f $1 ] && [ -L $1 ]; then
-        echo "Removing Symlink: ${1}"
-        rm $1
+SYS_LOCAL_BIN_DIR="/usr/local/bin"
+SYS_CAN_SET_RATE_FILE="${SYS_LOCAL_BIN_DIR}/can-set-rate"
 
-        if [ $? -ne 0 ]; then
-            echo "Failed to remove Symlink: ${1}"
-            exit 1
+WECAN_DIR="${SYS_DATA_DIR}/wecan"
+
+uninstall() {
+    local link=$1
+    if [ -f $link ] && [ -L $link ]; then
+
+        # Making sure the Symlink is pointint to wecan and not somebody else's scripts.
+        local fq_dir=$(dirname $(realpath "$link"))
+        if [ $WECAN_DIR = $fq_dir ]; then
+            echo "Removing Symlink: ${link}"
+            rm $link
+
+            if [ $? -ne 0 ]; then
+                echo "Failed to remove Symlink: ${link}"
+                exit 1
+            fi
+        else
+            echo "Skipping Symlink ${link} because it's not pointing to ${WECAN_DIR}"
         fi
     fi
 }
