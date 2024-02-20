@@ -27,9 +27,9 @@ Copy the contents of the `data/wecan` directory to `/data/wecan` on your GX. Mak
 
 All configuration values (there are only two) can be found in the `wecan.sh` script and realistically speaking only `$DEVICE` is relevant.
 
-### Firmware Upgrade
+### Firmware Upgrades
 
-The timing when `/data/rc.local` gets executed after a Firmware upgrade is such that the `/` filesystem is still in read-only mode and the WeCan installation will fail (you can find the errors in `/var/log/boot`). The simple fix is to restart the GX one more time. Or you can SSH into the GX and repeat the installation dance.
+Be aware that the GX's filesystem is mounted read only for as long as the access level isn't set to `Superuser` and the root password isn't set. The GX will retain the selected access level from one Firmware Upgrade to the next but the root password gets reset/disabled every time. That means after a Firmware Upgrade you need to set the root password and restart the GX once more (or you can SSH into the GX and essentially repeat the steps from the Installation). For any kind of errors see `/var/log/boot`.
 
 ### Validate
 
