@@ -21,15 +21,15 @@ Ideally Victron Energy should either replace the `CAN-bus BMS (500 kbit/s)` prof
 
 ## Installation
 
-Copy the contents of the `data/wecan` directory to `/data/wecan` on your GX. Make sure the scripts are executable and execute the `install.sh` script. The WeCan script takes immediately effect but you need to either toggle on/off your CAN profile once or restart the GX.
+Copy the contents of the `data/wecan` directory to `/data/wecan` on your GX device. Make sure the scripts are executable and execute the `install.sh` script. The WeCan script takes immediately effect but you need to either toggle on/off your CAN profile once or restart the GX device.
 
 ### Configuration
 
-All configuration values (there are only two) can be found in the `wecan.sh` script and realistically speaking only `$DEVICE` is relevant.
+All configuration values (there are only two) can be found in the `wecan.sh` script and realistically speaking only the `$CONFIG_DEVICE` property is relevant.
 
 ### Firmware Upgrades
 
-Be aware that the GX's filesystem is mounted read only for as long as the access level isn't set to `Superuser` and the root password isn't set. The GX will retain the selected access level from one Firmware Upgrade to the next but the root password gets reset/disabled every time. That means after a Firmware Upgrade you need to set the root password and restart the GX once more (or you can SSH into the GX and essentially repeat the steps from the Installation). For any kind of errors see `/var/log/boot`.
+Be aware that the GX's filesystem is mounted read only for as long as the access level isn't set to `Superuser` and the root password isn't set. The GX device will retain the selected access level from one Firmware Upgrade to the next but the root password gets reset/disabled every time. That means after a Firmware Upgrade you need to set the root password and restart the GX once more (or you can SSH into the GX device and essentially repeat the steps from the Installation). For any kind of errors see `/var/log/boot`.
 
 ### Validate
 
